@@ -39,8 +39,8 @@
                     <!-- <button mat-icon-button color="accent" (click)="addSkillClick()">
                         <mat-icon>playlist_add</mat-icon>
                       </button> -->
-                    <div formArrayName="skillang" *ngFor="let skill of formulaire.get('skillang').controls; let i = index">
-                        <div [formGroupName]="i">
+                    <div formArrayName="skillang">
+                        <div formGroupName>
                            
                             <mat-form-field class="example-full-width">
                                 <mat-chip-list #chipList aria-label="Skill selection">
@@ -51,12 +51,12 @@
                                     </mat-chip>
                                    
                                     <input placeholder="New skill..."
+                                    #skillInput
                                     [formControl]="skillCtrl"
                                     [matAutocomplete]="auto"
                                     [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                     (matChipInputTokenEnd)="add($event)"
-                                    matInput formControlName="skills"
                                      required>
                                 </mat-chip-list>
                                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">

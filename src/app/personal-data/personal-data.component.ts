@@ -75,6 +75,8 @@ export class PersonalDataComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
+    (this.formulaire.get('skillang') as FormArray).push(
+                        new FormGroup({skills: new FormControl(event.option.viewValue, [Validators.required])}));
     this.skills.push(event.option.viewValue);
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
