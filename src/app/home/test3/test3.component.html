@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">email</th>
+                <th scope="col">password</th>
+                <th scope="col">textarea</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let i = index;">
+                <th scope="row">{{i}}</th>
+                <td >{{user.email}}</td>
+                <td >{{user.password}}</td>
+                <td >{{user.textarea}}</td>
+                <td><button  type="button" (click) = "delete(i)"class="btn btn-danger">Supprimer</button>
+                <td><button  type="button" (click) = "store(i)"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">modify</button>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

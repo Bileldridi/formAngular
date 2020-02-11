@@ -1,0 +1,119 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <mat-card >
+                <div class="container">
+                    <form class="register" [formGroup]="login" (ngSubmit)="onSubmit()">
+                        <mat-form-field>
+                            <input matInput placeholder="Enter your email" formControlName="email" required>
+                            <mat-error *ngIf="login.hasError('required', 'email')">Email is required</mat-error>
+                            <mat-error *ngIf="login.hasError('email', 'email')">Not a valid email</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Enter your password" formControlName="password"
+                                [type]="hide ? 'password' : 'text'" required>
+                                <mat-error *ngIf="login.hasError('required', 'password')">Password is required</mat-error>
+                                <mat-error *ngIf="login.hasError('pattern', 'password')">Not a Valid Password </mat-error>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <textarea matInput placeholder="Textarea" formControlName="textarea"></textarea>
+                        </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button [disabled]='!login.valid' type="submit">Submit</button>
+            </mat-card-actions>
+        </form>
+    </div>
+    </mat-card>
+            
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="password">
+                    <th mat-header-cell *matHeaderCellDef> Password </th>
+                    <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="textarea">
+                    <th mat-header-cell *matHeaderCellDef> Textarea </th>
+                    <td mat-cell *matCellDef="let element"> {{element.textarea}} </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">email</th>
+                    <th scope="col">password</th>
+                    <th scope="col">textarea</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td >{{user.email}}</td>
+                    <td >{{user.password}}</td>
+                    <td >{{user.textarea}}</td>
+                    <td><button  type="button" (click) = "delete(i)"class="btn btn-danger">Supprimer</button>
+                    <td><button  type="button" (click) = "store(i)"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">modify</button>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="register" [formGroup]="loginEdit" (ngSubmit)="edit()">
+          <mat-form-field>
+              <input matInput placeholder="Enter your email" formControlName="emailEdit" required>
+              <mat-error *ngIf="login.hasError('required', 'email')">Email is required</mat-error>
+              <mat-error *ngIf="login.hasError('email', 'email')">Not a valid email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Enter your password" formControlName="passwordEdit"
+                  [type]="hide ? 'password' : 'text'" required>
+                  <mat-error *ngIf="login.hasError('required', 'password')">Password is required</mat-error>
+                  <mat-error *ngIf="login.hasError('pattern', 'password')">Not a Valid Password </mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput placeholder="Textarea" formControlName="textareaEdit"></textarea>
+          </mat-form-field>
+<mat-card-actions>
+  <button mat-raised-button [disabled]='!login.valid' type="submit">Edit</button>
+</mat-card-actions>
+</form>
+      </div>
+    </div>
+  </div>
+</div>

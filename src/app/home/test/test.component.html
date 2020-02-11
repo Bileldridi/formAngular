@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div class="form-group">
+      <input  [(ngModel)]="input1" class="form-control" [ngStyle]="getStyle()">
+      <input  [(ngModel)]="input2" class="form-control" [ngClass]="{'color': addClicked}">
+  </div>
+  <button (click)="addHero()" class="btn btn-primary">Add</button>
+  <button (click)="reset()" class="btn btn-primary">Reset</button>
+  <button (click)="clear()" class="btn btn-danger">Reset</button>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hero of heroes; let i = index;">
+      <th scope="row">{{i}}</th>
+      <td >{{hero}}</td>
+      <td><button *ngIf="hero.length > 10 " type="button" (click) = "delete(i)"class="btn btn-danger">Supprimer</button>
+    </tr>
+  </tbody>
+</table>
+</div>
