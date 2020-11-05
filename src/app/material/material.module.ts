@@ -10,6 +10,7 @@ import {
   MatTableModule,
   MatChipsModule,
   MatAutocompleteModule,
+  MatToolbarModule,
 } from '@angular/material';
 
 const MaterialComponents = [
@@ -23,6 +24,7 @@ const MaterialComponents = [
   MatTableModule,
   MatChipsModule,
   MatAutocompleteModule,
+  MatToolbarModule,
 ];
 
 @NgModule({

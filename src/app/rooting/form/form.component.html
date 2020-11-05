@@ -1,0 +1,31 @@
+<div class="row justify-content-center pad">
+    <div class="col-8">
+        <mat-card>
+            <div class="container">
+                <form class="register" [formGroup]="login">
+                    <mat-form-field>
+                        <input matInput placeholder="Enter your email" formControlName="email" required>
+                        <mat-error *ngIf="login.hasError('required', 'email')">Email is required</mat-error>
+                        <mat-error *ngIf="login.hasError('email', 'email')">Not a valid email</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Enter your password" formControlName="password"
+                            [type]="hide ? 'password' : 'text'" required>
+                        <mat-error *ngIf="login.hasError('required', 'password')">Password is required</mat-error>
+                        <mat-error *ngIf="login.hasError('pattern', 'password')">Not a Valid Password </mat-error>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput placeholder="Textarea" formControlName="textarea"></textarea>
+                    </mat-form-field>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="onSubmit()" [disabled]='!login.valid' type="submit">Submit</button>
+                    </mat-card-actions>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</div>

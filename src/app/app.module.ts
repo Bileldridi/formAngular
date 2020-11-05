@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +12,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { PersonalDataComponent } from './personal-data/personal-data.component';
+import { NavbarComponent } from './Rooting/navbar/navbar.component';
+import { FormComponent } from './Rooting/form/form.component';
+import { FormEditComponent } from './Rooting/form-edit/form-edit.component';
+import { TableComponent } from './Rooting/table/table.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { PersonalDataComponent } from './personal-data/personal-data.component';
     Test1Component,
     Test2Component,
     Test3Component,
-    PersonalDataComponent
+    PersonalDataComponent,
+    NavbarComponent,
+    FormComponent,
+    FormEditComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +38,8 @@ import { PersonalDataComponent } from './personal-data/personal-data.component';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

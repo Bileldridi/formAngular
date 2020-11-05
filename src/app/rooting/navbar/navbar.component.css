@@ -1,0 +1,22 @@
+.navbar{
+    justify-content: space-between;
+}
+span{
+    padding-right: 2rem;
+}
+mat-icon{
+    cursor: pointer;
+    outline: none;
+}
+mat-icon:hover {
+    font-size: 36px;
+    color: grey;
+    transition: 0.2s;
+  }
+  .box{
+    border-bottom: solid;
+  }
+  .map {
+    height: 100%;
+    width: 100%;
+  }

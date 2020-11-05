@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">email</th>
+      <th scope="col">password</th>
+      <th scope="col">textarea</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of tabUsers; let i = index;">
+    <tr >
+      <th scope="row">{{i}}</th>
+      <td >{{user.email}}</td>
+      <td >{{user.password}}</td>
+      <td >{{user.textarea}}</td>
+      <td><button  type="button" (click) = "delete(i)"class="btn btn-danger"><mat-icon>delete_sweep</mat-icon></button>
+      <td><button  type="button" (click) = "store(i)"class="btn btn-primary" ><span>
+        <mat-icon aria-label="Example home icon" [routerLink]= "['/edit',i]">edit</mat-icon>
+    </span></button>
+    </tr>
+  </tbody>
+</table>

@@ -26,7 +26,7 @@ export class Test1Component implements OnInit {
   loginEdit = new FormGroup({
     emailEdit: new FormControl('', [Validators.required, Validators.email]),
     textareaEdit: new FormControl('', [Validators.required]),
-    passwordEdit: new FormControl('', [Validators.required, 
+    passwordEdit: new FormControl('', [Validators.required,
                     Validators.pattern(/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#=$%^&*])[\w!@#=$%^&*]{8,}$/)]),
   });
   hide = true;

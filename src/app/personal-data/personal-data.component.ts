@@ -27,7 +27,6 @@ export class PersonalDataComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   skillCtrl = new FormControl();
   filteredSkills: Observable<string[]>;
-  skills: string[] = ['HTML'];
   allSkills: string[] = ['JS', 'CSS', 'BOOTSTRAP', 'ANGULAR', ];
   @ViewChild('skillInput', {static: false}) skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -42,7 +41,6 @@ export class PersonalDataComponent implements OnInit {
       phone: new FormControl('', [Validators.required])
       }),
       skillang : new FormArray([
-        this.addSkillang()
       ]),
       proexp : new FormArray([
         this.addProExp()
@@ -55,7 +53,8 @@ export class PersonalDataComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.skills.push(value.trim());
+      (this.formulaire.get('skillang') as FormArray).push(
+        new FormControl(value, [Validators.required]));
     }
 
     // Reset the input value
@@ -66,21 +65,12 @@ export class PersonalDataComponent implements OnInit {
     this.skillCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.skills.indexOf(fruit);
 
-    if (index >= 0) {
-      this.skills.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
+  selected(event: MatAutocompleteSelectedEvent) {
     (this.formulaire.get('skillang') as FormArray).push(
-                        new FormGroup({skills: new FormControl(event.option.viewValue, [Validators.required])}));
-    this.skills.push(event.option.viewValue);
+                        new FormControl(event.option.viewValue, [Validators.required]));
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
-    // (this.formulaire.get('skillang') as FormArray).controls['skills'].setValue(this.skills);
   }
 
   private _filter(value: string): string[] {
@@ -88,18 +78,15 @@ export class PersonalDataComponent implements OnInit {
 
     return this.allSkills.filter(skill => skill.toLowerCase().indexOf(filterValue) === 0);
   }
-    // addSkillClick(): void {
-    //     (this.formulaire.get('skillang') as FormArray).push(this.addSkillang());
-    // }
+
+  remove(i): void {
+    (this.formulaire.get('skillang') as FormArray).removeAt(i);
+  }
+
     addProExpClick(): void {
       (this.formulaire.get('proexp') as FormArray).push(this.addProExp());
     }
-    addSkillang() {
-    return  new FormGroup({
-       skills: new FormControl('', [Validators.required]),
-      // languages: new FormControl('', [Validators.required]),
-      });
-    }
+
      addProExp() {
        return new FormGroup({
      experience: new FormControl('', [Validators.required]),
@@ -110,6 +97,7 @@ export class PersonalDataComponent implements OnInit {
   removeProExpClick(i): void {
     (this.formulaire.get('proexp') as FormArray).removeAt(i);
   }
+
   onSubmit() {
     console.log(this.formulaire.value);
 
